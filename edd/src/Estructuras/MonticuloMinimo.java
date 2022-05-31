@@ -74,7 +74,9 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         elementos = 0;
         arbol = nuevoArreglo(100);
     }
-
+    public T pop(){
+        return null;
+    }
 
 
     public MonticuloMinimo(Iterable<T> iterable, int n ){
