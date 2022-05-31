@@ -12,20 +12,26 @@ public class pruebamonti{
         Pokemon poke4 = new Pokemon("d", "Agua", 4, 100);
         Pokemon poke5 = new Pokemon("e", "Volador", 5, 100);
         
-        MonticuloMinimo<Pokemon> monticulo = new MonticuloMinimo<Pokemon>();
+        Entero e1= new Entero(1);
+          Entero e2= new Entero(2);
+            Entero e3= new Entero(3);
+              Entero e4= new Entero(4);
+                Entero e5= new Entero(5);
+        
+        MonticuloMinimo<Entero> monticulo = new MonticuloMinimo<Entero>();
         // Agregamos elementos
-        monticulo.add(poke1);
-        monticulo.add(poke2);
-        monticulo.add(poke3);
-        monticulo.add(poke4);
-        monticulo.add(poke5);
+        monticulo.add(e1);
+        monticulo.add(e2);
+        monticulo.add(e3);
+        monticulo.add(e4);
+        monticulo.add(e5);
     
         // Mostramos el monticulo
         System.out.println(monticulo);
         System.out.println(monticulo.size());
         System.out.println("########");
         // Eliminamos el elemento con el mínimo valor
-        monticulo.delete();
+        /*monticulo.delete();
         // Mostramos el monticulo
         System.out.println(monticulo);
         System.out.println(monticulo.size());
@@ -43,7 +49,7 @@ public class pruebamonti{
 
         System.out.println(monticulo);
         System.out.println(monticulo.size());
-
+*/
 
 
     }
