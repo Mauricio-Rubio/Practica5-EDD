@@ -317,5 +317,42 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
     
     }
 
-
+public boolean esMontMin(T[] arreglo){
+    
+    int k = arreglo.length;
+    T[] arr = nuevoArreglo(k);
+    System.out.println("OHOOHOHOH");
+    for(int h=0; h<arreglo.length; h++){
+    T aux = arreglo[h];
+    arr[h]=aux;
+    }
+     System.out.println("JOJOJOJO");
+    for(int i=0; i<arr.length; i++){
+    if(arr[i]!=null){
+    int hi = (i*2)+1;
+    int hd=hi+1;
+    System.out.println("JIJIJI");
+    if(hi<arr.length){
+    if(arr[hi]!=null){
+    	if(arr[i].compareTo(arr[hi])>0 || arr[hi].compareTo(arr[i])==0){
+    		return false;
+    	}
+    }
+    }
+    
+    if(hd<arr.length){
+     if(arr[hd]!=null){
+    	if(arr[i].compareTo(arr[hd])>0|| arr[hd].compareTo(arr[i])==0){
+    		return false;
+    	}
+    }
+    }
+    
+    }
+    }
+    
+    
+    return true;
+    
+    }
 }

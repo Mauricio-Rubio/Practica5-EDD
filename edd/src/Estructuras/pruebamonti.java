@@ -17,7 +17,12 @@ public class pruebamonti{
             Entero e3= new Entero(3);
               Entero e4= new Entero(4);
                 Entero e5= new Entero(5);
-        
+        Entero[] arr = new Entero[5];
+        arr[0]=e1;
+        arr[1]=e1;
+        arr[2]=e3;
+        arr[3]=e4;
+        arr[4]=e5;
         MonticuloMinimo<Entero> monticulo = new MonticuloMinimo<Entero>();
         // Agregamos elementos
         monticulo.add(e1);
@@ -28,6 +33,7 @@ public class pruebamonti{
     
         // Mostramos el monticulo
         System.out.println(monticulo);
+        System.out.println(monticulo.esMontMin(arr));
         System.out.println(monticulo.size());
         System.out.println("########");
         // Eliminamos el elemento con el mínimo valor
