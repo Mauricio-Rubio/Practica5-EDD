@@ -28,6 +28,8 @@ public abstract class ArbolBinario<T> implements Collection<T> {
         /** El derecho del vértice. */
         public Vertice derecho;
 
+        
+
         /**
          * Constructor único que recibe un elemento.
          * @param elemento el elemento del vértice.
@@ -37,6 +39,12 @@ public abstract class ArbolBinario<T> implements Collection<T> {
              this.elemento=elemento;
         }
 
+        /**
+         * toString
+         */
+        @Override public String toString(){
+            return " "+this.elemento;
+        }
         /**
          * Nos dice si el vértice tiene vértice padre.
          * @return <tt>true</tt> si el vértice tiene vértice padre, <tt>false</tt>
@@ -117,10 +125,13 @@ public abstract class ArbolBinario<T> implements Collection<T> {
             int alturaIzquierdo = 0;
             int alturaDerecho = 0;
             
-            if (hayIzquierdo())
+            if (hayIzquierdo()){
                 alturaIzquierdo = izquierdo.altura();
-            if (hayDerecho())
+            }
+            if (hayDerecho()){
                 alturaDerecho = derecho.altura();
+            }
+
             return 1 + Math.max(alturaIzquierdo, alturaDerecho);
         }
 
@@ -235,7 +246,7 @@ public abstract class ArbolBinario<T> implements Collection<T> {
     public int altura() {
         if (isEmpty())
             return -1;
-        return raiz.altura();
+        return (raiz.altura()-1);
     }
 
     /**

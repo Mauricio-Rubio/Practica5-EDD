@@ -26,7 +26,7 @@ public interface Collection<T> extends Iterable<T> {
      * 
      * @return El elemento a sacar.
      */
-    //public T pop();
+    public T pop();
 
     /**
      * Regresa el número de elementos en la colección.
@@ -67,7 +67,6 @@ public interface Collection<T> extends Iterable<T> {
      *         <tt>false</tt> en otro caso.
      */
     public boolean equals(Object o);
-
 
     /**
      * Regresa una representación en cadena de la coleccion.

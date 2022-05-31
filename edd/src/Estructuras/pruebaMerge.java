@@ -33,22 +33,7 @@ public class pruebaMerge {
         System.out.println(lista3.mergeSort(new Comparator<Pokemon>() {
             @Override
             public int compare(Pokemon o1, Pokemon o2) {
-                return o1.nivel - o2.nivel;
-
-                /*
-                if(o1.nombre.compareTo(o2.nombre) == 0{
-                    return 0;
-                }
-                if(o1.nombre.compareTo(o2.nombre) < 0){
-                    return -1;
-                }
-                return 1;
-
-                //return o1.nombre.compareTo(o2.nombre)
-                */
-
-                /*
-                 (o1.tipo.compareTo("Electrico") == 0 ) {
+                if (o1.tipo.compareTo("Electrico") == 0 ) {
                     System.out.println("entro");
                    return -1;
                 }else if (o2.tipo.compareTo("Electrico") == 0) {
@@ -58,7 +43,6 @@ public class pruebaMerge {
                     return -1;
                 }
                 return 1;
-                */
             }
         }));
         
