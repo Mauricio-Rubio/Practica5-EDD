@@ -59,6 +59,44 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
       this.altura = super.altura() - 1;
     }
   }
+  
+   private class Iterador implements Iterator<T> {
+
+    private Pila<Vertice> pila;
+
+    public Iterador() {
+      pila = new Pila<Vertice>();
+      Vertice p = raiz;
+      while (p != null) {
+        pila.push(p);
+        p = p.izquierdo;
+      }
+    }
+
+    // falta hasNext
+    public T next() {
+      if (pila.isEmpty()) {
+        throw new NoSuchElementException("vacio");
+      }
+      Vertice v = pila.pop();
+      if (v.derecho != null) {
+        Vertice u = v.derecho;
+        while (u != null) {
+          pila.push(u);
+          u = u.izquierdo;
+        }
+      }
+
+      return v.elemento;
+    }
+
+    public boolean hasNext() {
+    if(!pila.isEmpty()){
+      return true;
+      }
+      return false;
+    }
+  }
 
   /**
    * Metodo para convertir vertice a verticeAVL

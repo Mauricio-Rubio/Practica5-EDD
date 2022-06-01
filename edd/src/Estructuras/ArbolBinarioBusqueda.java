@@ -42,6 +42,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>>
     }
 
     public boolean hasNext() {
+    if(!pila.isEmpty()){
+      return true;
+      }
       return false;
     }
   }

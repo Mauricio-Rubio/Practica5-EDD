@@ -42,6 +42,11 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             this.indice = -1;
         }
 
+        public String toString(){
+            String s;
+            s=""+elemento;
+            return s;
+        }
         /* Regresa el índice. */
         @Override
         public int getIndice() {
@@ -114,6 +119,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
 
         else{
             swap(arbol[minimo],arbol[i]);
+            monticuloMin(minimo);
         }
     }
 
@@ -223,7 +229,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             //Este swap ya esta 
             swap(arbol[i], arbol[min]);
             
-            recorreAbajo(i);
+            recorreAbajo(min);
             
         }
         
@@ -301,20 +307,156 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         return new Iterador();
     }
 
-    /**
+   
+   
+
+public boolean esMontMin(T[] arreglo){
+    
+    int k = arreglo.length;
+    T[] arr = nuevoArreglo(k);
+    for(int h=0; h<arreglo.length; h++){
+    T aux = arreglo[h];
+    arr[h]=aux;
+    }
+    for(int i=0; i<arr.length; i++){
+    if(arr[i]!=null){
+    int hi = (i*2)+1;
+    int hd=hi+1;
+    if(hi<arr.length){
+    if(arr[hi]!=null){
+    	if(arr[i].compareTo(arr[hi])>0 || arr[hi].compareTo(arr[i])==0){
+    		return false;
+    	}
+    }
+    }
+    
+    if(hd<arr.length){
+     if(arr[hd]!=null){
+    	if(arr[i].compareTo(arr[hd])>0|| arr[hd].compareTo(arr[i])==0){
+    		return false;
+    	}
+    }
+    }
+    
+    }
+    }
+    
+    
+    return true;
+    
+    }
+
+    public void intercambiar(T[] arr, int ind1, int ind2){
+        T aux = arr[ind1];
+        arr[ind1]=arr[ind2];
+        arr[ind2]= aux;
+    }
+
+public void ordenarAbajo(T[] arr, int pos){
+    int hi = (pos*2)+1;
+    int posN=pos,hd= hi+1;
+   // int a = arr[pos].compareTo(arr[hi]);
+  //  int b = arr[pos].compareTo(arr[hd]);
+
+  
+    T aux1=null, aux2=null;
+    if(hi<arr.length){
+        aux1= arr[hi];
+    }
+
+    if(hd<arr.length){
+        aux2= arr[hd];
+    }
+
+    if(aux1==null && aux2==null){
+        return;
+    }
+
+    if(aux1==null && aux2!=null){
+        if(arr[pos].compareTo(aux2)>0){
+        intercambiar(arr, pos, hd);
+        posN=hd;
+    
+   ordenarAbajo(arr, posN);
+        }
+    
+
+    }
+
+    if(aux1!=null && aux2==null){
+        if(arr[pos].compareTo(aux1)>0){
+        intercambiar(arr, pos, hi);
+        posN=hi;
+    
+   ordenarAbajo(arr, posN);
+        }
+    }
+
+    if(aux1!=null && aux2!=null){
+        if(aux1.compareTo(aux2)<0){
+            if(arr[pos].compareTo(aux1)>0){
+            intercambiar(arr, pos, hi);
+            posN=hi;
+           ordenarAbajo(arr, posN);
+            }
+        }else{
+            if(arr[pos].compareTo(aux2)>0){
+            intercambiar(arr, pos, hd);
+            posN=hd;
+            ordenarAbajo(arr, posN);
+            }
+        }
+    } 
+        
+       // ordenarAbajo(arr, posN);
+    
+}
+
+    public void arregloMin(T[] arr){
+       
+        int k,mitad = (arr.length/2)+1;
+        for(k=mitad; k>=0;k--){
+            ordenarAbajo(arr, k);
+        }
+
+       
+    }
+
+    public MonticuloMinimo MontMax_MontMin(T[] arr){
+        Lista<T> lista = new Lista<T>();
+        arregloMin(arr);
+        int k; 
+        for(k=0; k<arr.length;k++){
+            lista.add(arr[k]);
+        }
+        MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, arr.length);
+        return monti;
+
+    }
+ /**
     * Ordena la colección usando HeapSort.
     * @param <T> tipo del que puede ser el arreglo.
     * @param coleccion la colección a ordenar.
     * @return una lista ordenada con los elementos de la colección.
     */
-    public static <T extends Comparable<T>> Lista<T> heapSort(Collection<T> coleccion) {
+    public  <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+      
         Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
+        Lista<T> list = new Lista<T>();
+        for (T elem :colec) {
+            System.out.println(elem);
+            lAdaptador.add(new Adaptador<>(elem));
+        }
+        System.out.println("LISTA");
+        System.out.println(lAdaptador);
+          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>(lAdaptador, lAdaptador.size());
+       
+        System.out.println("MONTI");
+        System.out.println(monti);
+      
 
-        Lista<T> l = new Lista<T>();
-        
-        return l;
-    
+        //Lista<T> l = new Lista<T>();
+       // void
+        return list;
     }
-
-
 }
