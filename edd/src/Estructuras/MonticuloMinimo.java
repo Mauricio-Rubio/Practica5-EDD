@@ -440,24 +440,36 @@ public void ordenarAbajo(T[] arr, int pos){
     * @param coleccion la colección a ordenar.
     * @return una lista ordenada con los elementos de la colección.
     */
-    public  <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+    public <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+        
       
         Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
-        Lista<T> list = new Lista<T>();
+        Lista<Adaptador<T>> l = new Lista<Adaptador<T>>();
+       Lista<T> list = new Lista<T>();
         for (T elem :colec) {
             System.out.println(elem);
             lAdaptador.add(new Adaptador<>(elem));
         }
-        System.out.println("LISTA");
+      //  System.out.println("LISTA");
         System.out.println(lAdaptador);
-          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>(lAdaptador, lAdaptador.size());
        
-        System.out.println("MONTI");
-        System.out.println(monti);
+          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>();
+          for (Adaptador t : lAdaptador) {
+              monti.add(t);
+          }
+          while(!monti.isEmpty()){
+              l.add(monti.get(0));
+       list.add(monti.get(0).elemento);
+       monti.delete(monti.get(0));
+          }
+        //System.out.println("MONTI");
+      //  System.out.println(monti);
       
 
         //Lista<T> l = new Lista<T>();
-       // void
+       // voi
+       System.out.println(l.toString());
+       System.out.println(list.toString());
         return list;
     }
 }

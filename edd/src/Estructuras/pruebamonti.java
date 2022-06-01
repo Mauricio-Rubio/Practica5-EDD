@@ -20,6 +20,10 @@ public class pruebamonti{
                 Entero e5= new Entero(28);
                 Entero e6= new Entero(13);
                 Entero e7= new Entero(41);
+                Entero e8= new Entero(-10);
+                Entero e9= new Entero(1);
+                Entero e10= new Entero(-13);
+                Entero e11= new Entero(0);
         Entero[] arr = new Entero[7];
         arr[0]=e1;
         arr[1]=e2;
@@ -29,10 +33,14 @@ public class pruebamonti{
         arr[5]=e6;
         arr[6]=e7;
         Lista<Entero> lista = new Lista<Entero>();
+        lista.add(e11);
         lista.add(e2);
         lista.add(e5);
         lista.add(e1);
         lista.add(e3);
+        lista.add(e10); 
+        lista.add(e8);
+        lista.add(e9);
         lista.add(e4);
         lista.add(e6);
         lista.add(e7);
@@ -45,7 +53,7 @@ public class pruebamonti{
         System.out.println(monti);
         MonticuloMinimo<Entero> monticulo = new MonticuloMinimo<Entero>();
         // Agregamos elementos
-     monticulo.heapSort(arbol);
+    // monticulo.heapSort(arbol);
    //  monticulo.MontMax_MontMin(arreglo);
         monticulo.add(e7);
         monticulo.add(e6);
@@ -58,10 +66,11 @@ public class pruebamonti{
         for( k=0; k<arr.length; k++){
           System.out.print(arr[k]+",");
         }*/
-     
+        System.out.println("HeapSort");
+     monticulo.heapSort(lista);
       // monticulo.intercambiar(arr,0,4);
        // System.out.println("ORDENADO");
-        System.out.println(monticulo.MontMax_MontMin(arr));
+       // System.out.println(monticulo.MontMax_MontMin(arr));
        /* for( k=0; k<arr.length; k++){
           System.out.print(arr[k]+",");
         }*/
@@ -71,7 +80,7 @@ public class pruebamonti{
         System.out.println(monticulo.esMontMin(arr));
         System.out.println(monticulo.size());
         System.out.println("########");
-        //Eliminamos el elemento con el mínimo valor
+       /* //Eliminamos el elemento con el mínimo valor
         monticulo.delete();
         // Mostramos el monticulo
         System.out.println(monticulo);
@@ -104,7 +113,7 @@ public class pruebamonti{
         System.out.println(monticulo.size());
         System.out.println("########");
 
-
+*/
 
     }
 
