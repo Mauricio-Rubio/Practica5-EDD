@@ -83,6 +83,9 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         return null;
     }
 
+    public MonticuloMinimo(Collection<T> coleccion){
+        this(coleccion, coleccion.size());
+      }
 
     public MonticuloMinimo(Iterable<T> iterable, int n ){
         elementos = n;
