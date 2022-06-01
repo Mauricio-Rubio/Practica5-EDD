@@ -74,7 +74,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
     return (T[]) (new ComparableIndexable[n]);
   }
 
-  public MonticuloMaximo(Collection<T> coleccion){
+  public MonticuloMaximo(Collection<T> coleccion) {
     this(coleccion, coleccion.size());
   }
 
@@ -104,22 +104,22 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
   private void monticuloMax(int i) {
     int izq = i * 2 + 1;
     int der = i * 2 + 2;
-    int maximo = i;
-    //System.out.println("Se actualizo el monticulo");
+    int minimo = i;
+
     if (elementos <= i) {
       return;
     }
     if (izq < elementos && arbol[izq].compareTo(arbol[i]) > 0) {
-      maximo = izq;
+      minimo = izq;
     }
-    if (der < elementos && arbol[der].compareTo(arbol[maximo]) > 0) {
-      maximo = der;
+    if (der < elementos && arbol[der].compareTo(arbol[minimo]) > 0) {
+      minimo = der;
     }
-    if (maximo == i) {
+    if (minimo == i) {
       return;
     } else {
-      swap(arbol[maximo], arbol[i]);
-      monticuloMax(maximo);
+      swap(arbol[minimo], arbol[i]);
+      monticuloMax(minimo);
     }
   }
 
