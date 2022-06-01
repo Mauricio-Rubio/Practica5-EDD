@@ -22,5 +22,10 @@ public class pruebamonti {
     monMax.add(new Entero(15));
     monMax.add(new Entero(90));
     System.out.println(monMax);
+    System.out.println("#############");
+    monMax.delete();
+    monMax.delete();
+    System.out.println(monMax);
+
   }
 }

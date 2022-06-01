@@ -156,7 +156,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
   }
 
   /**
-   * Elimina el elemento minimo del monticulo
+   * Elimina el elemento maximo del monticulo
    *
    */
   public T delete() {
@@ -217,14 +217,14 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
     }
     if (izq < elementos) {
       if (der < elementos) {
-        if (arbol[izq].compareTo(arbol[der]) < 0) {
+        if (arbol[izq].compareTo(arbol[der]) > 0) {
           min = izq;
         }
       } else {
         min = izq;
       }
     }
-    if (arbol[min].compareTo(arbol[i]) < 0) {
+    if (arbol[min].compareTo(arbol[i]) > 0) {
       //Este swap ya esta
       swap(arbol[i], arbol[min]);
 
