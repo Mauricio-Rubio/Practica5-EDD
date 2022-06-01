@@ -15,7 +15,7 @@ public class Entero implements ComparableIndexable<Entero>{
     }
 
     public String toString() {
-        return "valor" + num ;
+        return "" + num ;
     }
     
     @Override

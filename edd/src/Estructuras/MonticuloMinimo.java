@@ -114,6 +114,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
 
         else{
             swap(arbol[minimo],arbol[i]);
+            monticuloMin(minimo);
         }
     }
 
@@ -224,7 +225,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             //Este swap ya esta 
             swap(arbol[i], arbol[min]);
             
-            recorreAbajo(i);
+            recorreAbajo(min);
             
         }
         
@@ -321,17 +322,14 @@ public boolean esMontMin(T[] arreglo){
     
     int k = arreglo.length;
     T[] arr = nuevoArreglo(k);
-    System.out.println("OHOOHOHOH");
     for(int h=0; h<arreglo.length; h++){
     T aux = arreglo[h];
     arr[h]=aux;
     }
-     System.out.println("JOJOJOJO");
     for(int i=0; i<arr.length; i++){
     if(arr[i]!=null){
     int hi = (i*2)+1;
     int hd=hi+1;
-    System.out.println("JIJIJI");
     if(hi<arr.length){
     if(arr[hi]!=null){
     	if(arr[i].compareTo(arr[hi])>0 || arr[hi].compareTo(arr[i])==0){
@@ -354,5 +352,93 @@ public boolean esMontMin(T[] arreglo){
     
     return true;
     
+    }
+
+    public void intercambiar(T[] arr, int ind1, int ind2){
+        T aux = arr[ind1];
+        arr[ind1]=arr[ind2];
+        arr[ind2]= aux;
+    }
+
+public void ordenarAbajo(T[] arr, int pos){
+    int hi = (pos*2)+1;
+    int posN=pos,hd= hi+1;
+   // int a = arr[pos].compareTo(arr[hi]);
+  //  int b = arr[pos].compareTo(arr[hd]);
+
+  
+    T aux1=null, aux2=null;
+    if(hi<arr.length){
+        aux1= arr[hi];
+    }
+
+    if(hd<arr.length){
+        aux2= arr[hd];
+    }
+
+    if(aux1==null && aux2==null){
+        return;
+    }
+
+    if(aux1==null && aux2!=null){
+        if(arr[pos].compareTo(aux2)>0){
+        intercambiar(arr, pos, hd);
+        posN=hd;
+    
+   ordenarAbajo(arr, posN);
+        }
+    
+
+    }
+
+    if(aux1!=null && aux2==null){
+        if(arr[pos].compareTo(aux1)>0){
+        intercambiar(arr, pos, hi);
+        posN=hi;
+    
+   ordenarAbajo(arr, posN);
+        }
+    }
+
+    if(aux1!=null && aux2!=null){
+        if(aux1.compareTo(aux2)<0){
+            if(arr[pos].compareTo(aux1)>0){
+            intercambiar(arr, pos, hi);
+            posN=hi;
+           ordenarAbajo(arr, posN);
+            }
+        }else{
+            if(arr[pos].compareTo(aux2)>0){
+            intercambiar(arr, pos, hd);
+            posN=hd;
+            ordenarAbajo(arr, posN);
+            }
+        }
+    } 
+        
+       // ordenarAbajo(arr, posN);
+    
+}
+
+    public void arregloMin(T[] arr){
+       
+        int k,mitad = (arr.length/2)+1;
+        for(k=mitad; k>=0;k--){
+            ordenarAbajo(arr, k);
+        }
+
+       
+    }
+
+    public MonticuloMinimo MontMax_MontMin(T[] arr){
+        Lista<T> lista = new Lista<T>();
+        arregloMin(arr);
+        int k; 
+        for(k=0; k<arr.length;k++){
+            lista.add(arr[k]);
+        }
+        MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, arr.length);
+        return monti;
+
     }
 }
