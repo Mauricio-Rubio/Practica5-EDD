@@ -146,7 +146,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
   private void recorreArriba(int i) {
     int padre = (i - 1) / 2;
     int m = i;
-    if (padre >= 0 && arbol[padre].compareTo(arbol[i]) > 0) {
+    if (padre >= 0 && arbol[padre].compareTo(arbol[i]) < 0) {
       m = padre;
     }
     if (m != i) {
