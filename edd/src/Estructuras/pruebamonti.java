@@ -11,7 +11,8 @@ public class pruebamonti{
         Pokemon poke3 = new Pokemon("c", "Electrico", 3, 100);
         Pokemon poke4 = new Pokemon("d", "Agua", 4, 100);
         Pokemon poke5 = new Pokemon("e", "Volador", 5, 100);
-        
+        int[] arreglo = new int[1];
+        arreglo[0]=9;
         Entero e1= new Entero(70);
           Entero e2= new Entero(60);
             Entero e3= new Entero(50);
@@ -27,16 +28,32 @@ public class pruebamonti{
         arr[4]=e5;
         arr[5]=e6;
         arr[6]=e7;
+        Lista<Entero> lista = new Lista<Entero>();
+        lista.add(e2);
+        lista.add(e5);
+        lista.add(e1);
+        lista.add(e3);
+        lista.add(e4);
+        lista.add(e6);
+        lista.add(e7);
+        ArbolRojinegro<Entero> arbol = new ArbolRojinegro<Entero>();
+        arbol.add(e1);
+        arbol.add(e2);
+        arbol.add(e3);
+        System.out.println(arbol);
+        MonticuloMinimo<Entero> monti = new MonticuloMinimo<Entero>(arbol,3);
+        System.out.println(monti);
         MonticuloMinimo<Entero> monticulo = new MonticuloMinimo<Entero>();
         // Agregamos elementos
-       
-        monticulo.add(e1);
-        monticulo.add(e2);
-        monticulo.add(e3);
-        monticulo.add(e4);
-        monticulo.add(e5);
-        monticulo.add(e6);
+     monticulo.heapSort(arbol);
+   //  monticulo.MontMax_MontMin(arreglo);
         monticulo.add(e7);
+        monticulo.add(e6);
+        monticulo.add(e5);
+        monticulo.add(e4);
+        monticulo.add(e3);
+        monticulo.add(e2);
+        monticulo.add(e1);
        /* int k;
         for( k=0; k<arr.length; k++){
           System.out.print(arr[k]+",");
@@ -44,7 +61,7 @@ public class pruebamonti{
      
       // monticulo.intercambiar(arr,0,4);
        // System.out.println("ORDENADO");
-        //System.out.println(monticulo.MontMax_MontMin(arr));
+        System.out.println(monticulo.MontMax_MontMin(arr));
        /* for( k=0; k<arr.length; k++){
           System.out.print(arr[k]+",");
         }*/

@@ -42,6 +42,11 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             this.indice = -1;
         }
 
+        public String toString(){
+            String s;
+            s=""+elemento;
+            return s;
+        }
         /* Regresa el índice. */
         @Override
         public int getIndice() {
@@ -303,20 +308,8 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         return new Iterador();
     }
 
-    /**
-    * Ordena la colección usando HeapSort.
-    * @param <T> tipo del que puede ser el arreglo.
-    * @param coleccion la colección a ordenar.
-    * @return una lista ordenada con los elementos de la colección.
-    */
-    public static <T extends Comparable<T>> Lista<T> heapSort(Collection<T> coleccion) {
-        Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
-
-        Lista<T> l = new Lista<T>();
-        
-        return l;
-    
-    }
+   
+   
 
 public boolean esMontMin(T[] arreglo){
     
@@ -440,5 +433,31 @@ public void ordenarAbajo(T[] arr, int pos){
         MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, arr.length);
         return monti;
 
+    }
+ /**
+    * Ordena la colección usando HeapSort.
+    * @param <T> tipo del que puede ser el arreglo.
+    * @param coleccion la colección a ordenar.
+    * @return una lista ordenada con los elementos de la colección.
+    */
+    public  <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+      
+        Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
+        Lista<T> list = new Lista<T>();
+        for (T elem :colec) {
+            System.out.println(elem);
+            lAdaptador.add(new Adaptador<>(elem));
+        }
+        System.out.println("LISTA");
+        System.out.println(lAdaptador);
+          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>(lAdaptador, lAdaptador.size());
+       
+        System.out.println("MONTI");
+        System.out.println(monti);
+      
+
+        //Lista<T> l = new Lista<T>();
+       // void
+        return list;
     }
 }
