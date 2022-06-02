@@ -525,9 +525,11 @@ private <T extends Comparable<T>> void ordenarAbajo(T[] arr, int pos){
         arregloMin(arreglo);//Convertimos el arreglo en un arreglo que represente un monticulo minimo. Tiene complejidad O(n) en tiempo
         
         for(k=0; k<arreglo.length;k++){//recorremos el arreglo y agregamos cada elemento de este en una lista. Igual toma complejidad O(n)
+            if(arreglo[k]!=null){
             lista.add(arreglo[k]);
+            }
         }
-        MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, arr.length);//Creamos el arbol con la lista. Este constructor va añadiendo los elementos de la coleccion.
+        MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, lista.size());//Creamos el arbol con la lista. Este constructor va añadiendo los elementos de la coleccion.
                                                                             // Añadir toma O(1) si no tenemos que reordenar hacia arriba. 
                                                                              //Como la lista ya representa un MinHeap no tendremos que reordenar, pero tenemos que añadir los n elementos de la lista, por lo cual esto nos toma O(n) en complejidad de tiempo
         return monti;//Regresamos el monticulo creado
