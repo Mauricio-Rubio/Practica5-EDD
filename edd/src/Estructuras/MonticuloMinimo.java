@@ -170,7 +170,6 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         else{
             return null;
         }
-
     }
 
     /**
