@@ -478,4 +478,8 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
     return desbalanceado;
   }
+   @Override
+  public Iterator<T> iterator() {
+    return new Iterador();
+  }
 }

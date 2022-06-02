@@ -313,29 +313,29 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
    
    
 
-public boolean esMontMin(T[] arreglo){
+public <T extends Comparable<T>> boolean esMontMin(T[] arreglo){
     
     int k = arreglo.length;
-    T[] arr = nuevoArreglo(k);
+   // T[] arr = nuevoArreglo(k);
     for(int h=0; h<arreglo.length; h++){
     T aux = arreglo[h];
-    arr[h]=aux;
+    arreglo[h]=aux;
     }
-    for(int i=0; i<arr.length; i++){
-    if(arr[i]!=null){
+    for(int i=0; i<arreglo.length; i++){
+    if(arreglo[i]!=null){
     int hi = (i*2)+1;
     int hd=hi+1;
-    if(hi<arr.length){
-    if(arr[hi]!=null){
-    	if(arr[i].compareTo(arr[hi])>0 || arr[hi].compareTo(arr[i])==0){
+    if(hi<arreglo.length){
+    if(arreglo[hi]!=null){
+    	if(arreglo[i].compareTo(arreglo[hi])>0 || arreglo[hi].compareTo(arreglo[i])==0){
     		return false;
     	}
     }
     }
     
-    if(hd<arr.length){
-     if(arr[hd]!=null){
-    	if(arr[i].compareTo(arr[hd])>0|| arr[hd].compareTo(arr[i])==0){
+    if(hd<arreglo.length){
+     if(arreglo[hd]!=null){
+    	if(arreglo[i].compareTo(arreglo[hd])>0|| arreglo[hd].compareTo(arreglo[i])==0){
     		return false;
     	}
     }
@@ -349,13 +349,13 @@ public boolean esMontMin(T[] arreglo){
     
     }
 
-    public void intercambiar(T[] arr, int ind1, int ind2){
+    public <T extends Comparable<T>>void intercambiar(T[] arr, int ind1, int ind2){
         T aux = arr[ind1];
         arr[ind1]=arr[ind2];
         arr[ind2]= aux;
     }
 
-public void ordenarAbajo(T[] arr, int pos){
+public <T extends Comparable<T>> void ordenarAbajo(T[] arr, int pos){
     int hi = (pos*2)+1;
     int posN=pos,hd= hi+1;
    // int a = arr[pos].compareTo(arr[hi]);
@@ -442,24 +442,38 @@ public void ordenarAbajo(T[] arr, int pos){
     * @param coleccion la colección a ordenar.
     * @return una lista ordenada con los elementos de la colección.
     */
-    public  <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+    public <T extends Comparable<T>> Lista<T>  heapSort(Collection<T> colec){
+        
       
         Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
-        Lista<T> list = new Lista<T>();
+        Lista<Adaptador<T>> l = new Lista<Adaptador<T>>();
+       Lista<T> list = new Lista<T>();
         for (T elem :colec) {
             System.out.println(elem);
             lAdaptador.add(new Adaptador<>(elem));
         }
-        System.out.println("LISTA");
+      //  System.out.println("LISTA");
         System.out.println(lAdaptador);
-          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>(lAdaptador, lAdaptador.size());
        
-        System.out.println("MONTI");
-        System.out.println(monti);
+          MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>();
+          for (Adaptador t : lAdaptador) {
+              monti.add(t);
+          }
+          while(!monti.isEmpty()){
+              l.add(monti.get(0));
+       list.add(monti.get(0).elemento);
+       monti.delete(monti.get(0));
+          }
+        //System.out.println("MONTI");
+      //  System.out.println(monti);
       
 
         //Lista<T> l = new Lista<T>();
-       // void
+       // voi
+       System.out.println(l.toString());
+       System.out.println(list.toString());
         return list;
     }
+
+   
 }
