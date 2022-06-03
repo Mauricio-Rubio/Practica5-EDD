@@ -558,7 +558,6 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
     Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
     Lista<T> list = new Lista<T>();
     for (T elem : colec) {
-      System.out.println(elem);
       lAdaptador.add(new Adaptador<>(elem)); //usamos un adaptador para posteriomente agregar este elemento a un MinHeap
     }
     //Creamos el MinHeap a partir de la lista de adaptadores
