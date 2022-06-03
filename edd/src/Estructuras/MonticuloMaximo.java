@@ -303,31 +303,33 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
     return new Iterador();
   }
 
-  public boolean esMontMin(T[] arreglo) {
+  public <T extends Comparable<T>> boolean esMontMax(T[] arreglo) {
     int k = arreglo.length;
-    T[] arr = nuevoArreglo(k);
+    // T[] arr = nuevoArreglo(k);
     for (int h = 0; h < arreglo.length; h++) {
       T aux = arreglo[h];
-      arr[h] = aux;
+      arreglo[h] = aux;
     }
-    for (int i = 0; i < arr.length; i++) {
-      if (arr[i] != null) {
+    for (int i = 0; i < arreglo.length; i++) {
+      if (arreglo[i] != null) {
         int hi = (i * 2) + 1;
         int hd = hi + 1;
-        if (hi < arr.length) {
-          if (arr[hi] != null) {
+        if (hi < arreglo.length) {
+          if (arreglo[hi] != null) {
             if (
-              arr[i].compareTo(arr[hi]) > 0 || arr[hi].compareTo(arr[i]) == 0
+              arreglo[i].compareTo(arreglo[hi]) < 0 ||
+              arreglo[hi].compareTo(arreglo[i]) == 0
             ) {
               return false;
             }
           }
         }
 
-        if (hd < arr.length) {
-          if (arr[hd] != null) {
+        if (hd < arreglo.length) {
+          if (arreglo[hd] != null) {
             if (
-              arr[i].compareTo(arr[hd]) > 0 || arr[hd].compareTo(arr[i]) == 0
+              arreglo[i].compareTo(arreglo[hd]) < 0 ||
+              arreglo[hd].compareTo(arreglo[i]) == 0
             ) {
               return false;
             }
@@ -335,7 +337,6 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
         }
       }
     }
-
     return true;
   }
 
@@ -408,16 +409,28 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
     }
   }
 
-  public MonticuloMinimo MontMax_MontMin(T[] arr) {
-    Lista<T> lista = new Lista<T>();
-    arregloMin(arr);
-    int k;
-    for (k = 0; k < arr.length; k++) {
-      lista.add(arr[k]);
+  /**
+   * Metodo que toma un arreglo que representa un monituculo maximo y lo transforma en un monticulo minimo en complejidad O(n)
+   * @param arr Arreglo a trabajar
+   * @return MinticuloMinimo
+   */
+  public MonticuloMaximo<T> MontMin_MontMax(T[] arr) {
+    MonticuloMinimo<T> monMin = new MonticuloMinimo<T>();
+    if(!monMin.esMontMin(arr)){
+      System.err.println("No es un monticulo minimo");
+      return null; 
     }
-    MonticuloMinimo<T> monti = new MonticuloMinimo<T>(lista, arr.length);
-    return monti;
+    Lista<T> lista = new Lista<T>();
+    for (int i = 0; i < arr.length; i++) {
+      System.err.println("i -->"+i);
+      lista.add(arr[i]);
+    }
+    return new MonticuloMaximo<T>(lista);
   }
+
+  
+
+
 
   /**
    * Ordena la colección usando HeapSort.
