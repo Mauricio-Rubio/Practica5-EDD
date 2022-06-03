@@ -1,8 +1,11 @@
 package edd.src.Estructuras;
-public class pruebamonti {
+
+import java.util.Iterator;
+
+public class pruebamonti <T extends ComparableIndexable<T>>{
 
   public static void main(String[] args) {
-    Lista<Entero> lista1 = new Lista<Entero>();
+    /*Lista<Entero> lista1 = new Lista<Entero>();
     for (int i = 7; i > 0; i--) {
       lista1.add(new Entero(i*10));
      // arr[i]= new Entero(i*10);
@@ -38,6 +41,26 @@ public class pruebamonti {
       System.out.println(entero);
     }
     System.out.println("1 "+monMax.esMontMax(arr));
-    System.out.println("2 "+monMax.esMontMax(arr2));
+    System.out.println("2 "+monMax.esMontMax(arr2));*/
+    Lista <Entero> lista = new Lista<Entero>();
+    lista.add(new Entero(10)); 
+    lista.add(new Entero(15)); 
+    lista.add(new Entero(20)); 
+    lista.add(new Entero(50)); 
+    lista.add(new Entero(55)); 
+    Entero [] arr = new Entero[lista.size()];
+    Iterator<Entero> iterador = lista.iterator();
+    int i = 0;
+    while (iterador.hasNext()) {
+      arr[i] = iterador.next();
+      i++;
+    }
+    
+    MonticuloMinimo<Entero> monMin = new MonticuloMinimo<Entero>(lista);
+    System.out.println(monMin);
+    MonticuloMaximo<Entero> monMax = new MonticuloMaximo<Entero>();
+    System.out.println("Monticulo antes "+monMax);
+    monMax = monMax.MontMin_MontMax(arr);
+    System.out.println("Monticulo despues "+monMax);
   }
 }
