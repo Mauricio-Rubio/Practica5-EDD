@@ -402,13 +402,6 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
 
   }
 
-  public void arregloMin(T[] arr) {
-    int k, mitad = (arr.length / 2) + 1;
-    for (k = mitad; k >= 0; k--) {
-      ordenarAbajo(arr, k);
-    }
-  }
-
   /**
    * Metodo que toma un arreglo que representa un monituculo maximo y lo transforma en un monticulo minimo en complejidad O(n)
    * @param arr Arreglo a trabajar
@@ -416,47 +409,116 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>>
    */
   public MonticuloMaximo<T> MontMin_MontMax(T[] arr) {
     MonticuloMinimo<T> monMin = new MonticuloMinimo<T>();
-    if(!monMin.esMontMin(arr)){
+    if (!monMin.esMontMin(arr)) {
       System.err.println("No es un monticulo minimo");
-      return null; 
+      return null;
+    }
+    int k;
+    T[] arreglo = nuevoArreglo(arr.length);
+    for (k = 0; k < arr.length; k++) { //Clonamos el arreglo que recibimos para que este no se vea afectado. Esto toma O(n)
+      arreglo[k] = arr[k];
     }
     Lista<T> lista = new Lista<T>();
-    for (int i = 0; i < arr.length; i++) {
-      System.err.println("i -->"+i);
-      lista.add(arr[i]);
+    arregloMax(arreglo); //Convertimos el arreglo en un arreglo que represente un monticulo maximo. Tiene complejidad O(n) en tiempo
+
+    for (k = 0; k < arreglo.length; k++) { //recorremos el arreglo y agregamos cada elemento de este en una lista. Igual toma complejidad O(n)
+      if (arreglo[k] != null) {
+        lista.add(arreglo[k]);
+      }
     }
-    return new MonticuloMaximo<T>(lista);
+    MonticuloMaximo<T> monti = new MonticuloMaximo<T>(lista, lista.size()); //Creamos el arbol con la lista. Este constructor va añadiendo los elementos de la coleccion.
+    // Añadir toma O(1) si no tenemos que reordenar hacia arriba.
+    //Como la lista ya representa un MinHeap no tendremos que reordenar, pero tenemos que añadir los n elementos de la lista, por lo cual esto nos toma O(n) en complejidad de tiempo
+    //return monti; //Regresamos el monticulo creado
+    //Como todas las operaciones nos tomaron O(n) en tiempo y espacio donde "n" es el numero de elementos del arreglo que recibimos, entonces, sea T(n) la complejidad de nuestro algoritmo en tiempo y  espacio, sucede que T(n) pertenece a O(n)
+    return monti;
   }
 
-  
-
-
+  /**
+   * Metodo que transforma un arreglo en un arreglo que represente un MaxHeap. Este metodo, por lo escrito en las notas del profesor, tiene complejidad O(n) en tiempo.
+   * @param <T> tipo del que puede ser el arreglo
+   * @param arr
+   */
+  private <T extends Comparable<T>> void arregloMax(T[] arr) {
+    //variables enteras a usar
+    int k, mitad = (arr.length / 2) + 1; //mitad representa el indice a la mitad del arreglo
+    for (k = mitad; k >= 0; k--) { //partiendo de la mitad del arreglo hacia el indice 0
+      ordenarAbajo(arr, k); //ordenamos hacia abajo el arreglo
+    }
+  }
 
   /**
-   * Ordena la colección usando HeapSort.
-   * @param <T> tipo del que puede ser el arreglo.
-   * @param coleccion la colección a ordenar.
-   * @return una lista ordenada con los elementos de la colección.
+   * Metodo para ordenar hacia abajo un arreglo para que represente un MaxHeap
+   * @param <T> Tipo del que puede ser el arreglo
+   * @param arr Arreglo a manejar
+   * @param pos Posicion del arreglo desde la cual deseamos ordenar hacia abajo
    */
-  public <T extends Comparable<T>> Lista<T> heapSort(Collection<T> colec) {
-    Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
-    Lista<T> list = new Lista<T>();
-    for (T elem : colec) {
-      System.out.println(elem);
-      lAdaptador.add(new Adaptador<>(elem));
+  private <T extends Comparable<T>> void ordenarAbajo(T[] arr, int pos) {
+    int hi = (pos * 2) + 1; //Indice del hijo izquierdo del elemento desde el cual ordenamos
+    int posN = pos, hd = hi + 1; //Indice del hijo derecho del elemento desde el cual ordenamos
+
+    T aux1 = null, aux2 = null; //Elementos auxiliares
+    if (hi < arr.length) { //Si existe la posicion de hijo izquierdo en el arreglo
+      aux1 = arr[hi]; //El primer auxiliar sera el elemento en la posicion del hijo izquierdo
     }
-    System.out.println("LISTA");
-    System.out.println(lAdaptador);
-    MonticuloMinimo<Adaptador<T>> monti = new MonticuloMinimo<Adaptador<T>>(
-      lAdaptador,
-      lAdaptador.size()
-    );
 
-    System.out.println("MONTI");
-    System.out.println(monti);
+    if (hd < arr.length) { //Si existe la posicion de hijo izquierdo en el arreglo
+      aux2 = arr[hd]; //El segundo auxiliar sera el elemento en la posicion del hijo derecho
+    }
 
-    //Lista<T> l = new Lista<T>();
-    // void
-    return list;
+    if (aux1 == null && aux2 == null) { //Si no existe hijo izquierdo ni derecho, terminamos
+      return;
+    }
+
+    if (aux1 == null && aux2 != null) { //Si solo exise hijo derecho
+      if (arr[pos].compareTo(aux2) < 0) { //comparamos
+        intercambiar(arr, pos, hd); //intercambiamos de ser necesario
+        posN = hd; //ahora ordenamos hacia abajo desde la posicion del hijo derecho
+
+        ordenarAbajo(arr, posN);
+      }
+    }
+
+    if (aux1 != null && aux2 == null) { //Si solo exise hijo izquierdo
+      if (arr[pos].compareTo(aux1) < 0) { //comparamos
+        intercambiar(arr, pos, hi); //intercambiamos de ser necesario
+        posN = hi; //ahora ordenamos hacia abajo desde la posicion del hijo izquierdo
+
+        ordenarAbajo(arr, posN);
+      }
+    }
+
+    if (aux1 != null && aux2 != null) { //Si exisen ambos hijos
+      if (aux1.compareTo(aux2) > 0) { //Si el hijo izquierdo es el maximo entre los hijos
+        if (arr[pos].compareTo(aux1) < 0) { //Comparamos con el hijo izquierdo
+          intercambiar(arr, pos, hi); //Intercambiamos de ser necesario
+          posN = hi; //ahora ordenamos hacia abajo desde el hijo izquierdo
+          ordenarAbajo(arr, posN);
+        }
+      } else { //si el hijo derecho es igual o menor al hijo izquierdo
+        if (arr[pos].compareTo(aux2) < 0) { //comparamos el elemento con su hijo derecho
+          intercambiar(arr, pos, hd); //intercambiamos de ser necesario
+          posN = hd; //ahora ordenamos hacia abajo desde la posicion del hijo derecho
+          ordenarAbajo(arr, posN);
+        }
+      }
+    }
+  }
+
+  /**
+   * Metodo que hace la funcion swap en un arreglo
+   * @param <T> Tipo del que puede ser el arreglo
+   * @param arr El arreglo a manejar
+   * @param ind1 Indice del primer elemento a intercambiar
+   * @param ind2 Indice del segundo elemento a intercambiar
+   */
+  private <T extends Comparable<T>> void intercambiar(
+    T[] arr,
+    int ind1,
+    int ind2
+  ) {
+    T aux = arr[ind1];
+    arr[ind1] = arr[ind2];
+    arr[ind2] = aux;
   }
 }
