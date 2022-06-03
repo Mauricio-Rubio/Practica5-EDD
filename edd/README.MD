@@ -1,5 +1,7 @@
-## Nombres ->
-        ->
+## Nombres 
+### Mauricio Rubio Haro
+### Kevin Isaac Alcantara Estrada
+
 
 compilar -> javac -d . src/Estructuras/*.java
 
