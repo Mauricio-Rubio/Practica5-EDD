@@ -20,6 +20,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
     //Atributos de la clase
     private int indice;
 
+
     /**
      * Metodo para saber si hay siguiente elemento
      * @return boolean
@@ -83,6 +84,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
 
     /* Compara un indexable con otro. */
     @Override
+
     public int compareTo(Adaptador<T> adaptador) {
       return this.elemento.compareTo(adaptador.elemento);
     }
@@ -489,6 +491,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
       }
     }
 
+
     if (aux1 != null && aux2 != null) { //Si exisen ambos hijos
       if (aux1.compareTo(aux2) < 0) { //Si el hijo izquierdo es el minimo entre los hijos
         if (arr[pos].compareTo(aux1) > 0) { //Comparamos con el hijo izquierdo
@@ -555,7 +558,6 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>>
     Lista<Adaptador<T>> lAdaptador = new Lista<Adaptador<T>>();
     Lista<T> list = new Lista<T>();
     for (T elem : colec) {
-      System.out.println(elem);
       lAdaptador.add(new Adaptador<>(elem)); //usamos un adaptador para posteriomente agregar este elemento a un MinHeap
     }
     //Creamos el MinHeap a partir de la lista de adaptadores
