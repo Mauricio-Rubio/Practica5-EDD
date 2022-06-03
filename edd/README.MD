@@ -1,33 +1,12 @@
-## Nombres ->
-        ->
-
-compilar -> javac -d . src/Estructuras/*.java
-
-Ejecutar -> java edd.src.Estructuras.pruebaMerge
+## Nombres 
+### Mauricio Rubio Haro
+### Kevin Isaac Alcantara Estrada
 
 
+### compilar -> javac -d . src/Estructuras/*.java
 
-============ Automata ===================
-compile : javac -d . src/Automata/*.java
-run : java edd.src.Automata.VentanaPrincipal
+### Ejecutar -> java edd.src.Estructuras.Practica5
 
-
-
-## Automata
-Recuerda, como tu automata usara objetos Pila y Cola. Debes compilar primero esa sección de la práctica. 
-
-
-Para cambiar el Automata Celular que se mostrara modifica la linea 61 de la clase VentanaPrincipal
-
-Para cambiar el tiempo entre evoluciones. modifica el valor 
-Thread.sleep(1000);
-de la linea 172 de la clase Ventana Principal, mientras más grande el número, más lento evolucionara. 
-
-## Colores
-Para agregar nuevos colores revisa el metodo Pinta de la clase Imagen.
-color 0: YELLOW
-color 1: BLUE
-color 2: WHITE
-color 3: BLACK
-color 4: RED
-color 5: GREEN
+#### En el metodo main ya se encuentran cargadas pruebas para ambos monticulos (min y max), a su vez, se hace uso 
+#### de la clase Entero, la cual fue contruida con el fin de poder utilizar numeros indexados, aunque se puede ocupar
+#### cualquier otro objeto que pueda ser indexado (ej. la clase Pokemon ya diseñada).

@@ -11,7 +11,7 @@ public class Entero implements ComparableIndexable<Entero>{
     }
     
     public Entero(){
-     this.num=0;
+     this.num=(int)(Math.random()*5);
     }
 
     public String toString() {

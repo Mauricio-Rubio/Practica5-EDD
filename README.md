@@ -1,10 +1,5 @@
-# PrograIntroGit
-## Este es un subtitulo
-
-
-Ya vine a arreglar tu README!!!!!
-
-
-[Tutorial ->](https://github.com/UlmoMacias/tutorial-github-es)
-
-[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+# Practica 5 Estructuras de Datos
+## Temas
+### Colas de prioridad
+### Min Heaps
+### Max Heaps
