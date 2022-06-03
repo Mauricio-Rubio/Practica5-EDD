@@ -12,7 +12,7 @@ public class pruebamonti {
     }
 
     for(int j=0; j<3; j++){
-      arr[j]=new Entero(10-j);
+      arr[j]=new Entero(10+j);
     }
     lista1.agregaInicio(new Entero(1));
     lista1.agregaFinal(new Entero(70));

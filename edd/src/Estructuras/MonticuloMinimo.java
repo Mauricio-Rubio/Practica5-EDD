@@ -130,8 +130,8 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
     }
 
     /**
-     * 
-     * @param i
+     * Metodo que pone al minimo elemento en la raiz
+     * @param i INdice dsde donde acomodaremos el minimo
      */
     private void monticuloMin(int i){
         int izq = i * 2 +1 ;
@@ -393,7 +393,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
  * @return boolean
  */
 public <T extends Comparable<T>> boolean esMontMin(T[] arreglo){
-    
+   
     for(int i=0; i<arreglo.length; i++){//Recorremos el arreglo de forma iterativa
     if(arreglo[i]!=null){//Verificamos que el objeto contenido en el arreglo no sea null
     int hi = (i*2)+1;//Denotamos el indice del hijo izquierdo del elemento del arreglo que estamos revisando
@@ -516,6 +516,11 @@ private <T extends Comparable<T>> void ordenarAbajo(T[] arr, int pos){
      * @return MinticuloMinimo
      */
     public MonticuloMinimo MontMax_MontMin(T[] arr){
+        MonticuloMaximo<T> mont= new MonticuloMaximo<>();
+        if(!mont.esMontMax(arr)){
+            System.out.println("El arreglo no representa un monticulo maximo, no puedo proceder");
+            return null;
+        }
         int k; 
         T[] arreglo = nuevoArreglo(arr.length);
         for(k=0; k<arr.length;k++){//Clonamos el arreglo que recibimos para que este no se vea afectado. Esto toma O(n)
